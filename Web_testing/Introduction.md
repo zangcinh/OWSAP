@@ -1,17 +1,17 @@
 # DEFINITION #
-$${\color{lightblue}What \space is \space a \space web \space applicatiton \space security \space test? \space(WAST)}$$
+$${\color{green}What \space is \space a \space web \space applicatiton \space security \space test? \space(WAST)}$$
 
 Web application security helps identify vulnerabilities that could lead to data breaches, malware attcks, access control issues,compromising safety. The application's code is analyzed to find vulnerabilities like XSS, SQL injections, privilege escalation, broken access control, and more.
 
 > Kiểm tra bảo mật ứng dụng web giúp xác định các lỗ hổng có thể dẫn đến vi phạm dữ liệu, tấn công phần mềm độc hại, các vấn đề kiểm soát truy cập, làm ảnh hưởng đến sự an toàn. Mã nguồn của ứng dụng được phân tích để tìm các lỗ hổng như XSS, SQL injection, leo thang đặc quyền, kiểm soát truy cập bị phá vỡ và hiều vấn đề khác.
 
-$${\color{lightblue}What \space are \space the \space three \space types \space of \space web \space application \space testing?}$$
+$${\color{green}What \space are \space the \space three \space types \space of \space web \space application \space testing?}$$
 
 The three typpes of web app testing are black box, gray box and white box testing. Black box tests are conducted blindly with only publicly available information, gray box tests with some target information, and in a white box test, the tester goes very in-depth and knows all the details about the target.
 
 > Có 3 loại kiểm tra ứng dụng web là kiểm thủ black box, gray box và white box. Black box được thực hiện mà không có thông tin nội bộ, chỉ dựa trên thông tin công khai. Gray box đượcc thực hiện với một số thông tin về mục tiêu. White box thì người kiểm thử sẽ đi rất sâu và biết tất cả các chi tiết về mục tiêu
 
-$${\color{lightblue}Types \space of \space WAST}$$	
+$${\color{green}Types \space of \space WAST}$$	
 1. Static Appplication Security Testing (SAST) is a security measure integrated into development cycle before application deployment. [Bandit](https://www.jit.io/resources/appsec-tools/how-to-run-a-sast-test-with-bandit-and-jit) is one example of this measure. SAST can be automated and run during the build process to ensure security measures are in place.[Best SAST tools](https://www.jit.io/resources/appsec-tools/best-sast-tools)analyze the application's code and identify potential vulnerabilities without the application needing to run. They look for vulnerabilities like SQL injection, cross-site scripting (XSS), and cross-site request forgery (CSRF).  
 
 > Kiểm thử bảo mật ứng dụng tĩnh (SAST) là một biện pháp bảo mật được tích hợp vào chu kỳ phát triển trước khi triển khai ứng dụng. Bandit là một ví dụ về biện pháp này. SAST có thể được tự động hóa và chạy trong quá trình build để đảm bảo các biện pháp bảo mật đã được áp dụng. Các công cụ SAST tốt nhất sẽ phân tích mã nguồn của ứng dụng và xác định các lỗ hổng tiềm ẩn mà không cần ứng dụng phải chạy. Chúng tìm kiếm các lỗ hổng như SQL injection, cross-site scripting (XSS), và cross-site request forgery (CSRF).
@@ -30,7 +30,7 @@ Common DAST tools include OWASP ZAP and Legitify by Legit Labs. These tools can 
 
 > Kiểm thử xâm nhập (pen test) là một cuộc tấn công giả lập được ủy quyền, thực hiện trên một hệ thống máy tính để đánh giá mức độ bảo mật của nó. Các chuyên gia kiểm thử xâm nhập sử dụng các công cụ, kỹ thuật và quy trình tương tự như kẻ tấn công để tìm và minh chứng các tác động kinh doanh của những điểm yếu trong hệ thống. Kiểm thử xâm nhập thường mô phỏng nhiều kiểu tấn công khác nhau có thể đe dọa đến doanh nghiệp. Họ có thể kiểm tra liệu hệ thống có đủ mạnh để chịu đựng các cuộc tấn công từ cả các vị trí đã được xác thực và chưa được xác thực, cũng như từ nhiều vai trò khác nhau trong hệ thống. Với phạm vi phù hợp, một cuộc kiểm thử xâm nhập có thể đi sâu vào bất kỳ khía cạnh nào của hệ thống.
 
-$${\color{lightblue}Check \space list \space OWSAP \space Website}$$	
+$${\color{green}Check \space list \space OWSAP \space Website}$$	
 1. Information Gathering
 2. Configuration and Deployment Management Testing
 3. Identity Management Testing
