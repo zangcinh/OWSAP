@@ -1,4 +1,4 @@
-# $${\color{blue}DEFINITION}$$ #
+# DEFINITION #
 $${\color{lightblue}What \space is \space a \space web \space applicatiton \space security \space test? \space(WAST)}$$
 
 Web application security helps identify vulnerabilities that could lead to data breaches, malware attcks, access control issues,compromising safety. The application's code is analyzed to find vulnerabilities like XSS, SQL injections, privilege escalation, broken access control, and more.
