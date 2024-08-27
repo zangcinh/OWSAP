@@ -144,6 +144,7 @@ A search operator -- sometimes referred to as a search parameter -- is a charact
 $${\color{green}What \space are \space some \space types \space of  \space search \space operators?}$$
 
 The most common search operators are Boolean relationships, including AND, OR and NOT, as well as simple wildcard operators, like an asterisk, parentheses or quotation marks, which indicate the searcher is looking for an exact match. Search engines typically provide a variety of advanced search operators designed to provide powerful search capabilities.
+>Các toán tử tìm kiếm phổ biến nhất là các mối quan hệ Boolean, bao gồm AND, OR và NOT, cũng như các toán tử ký tự đại diện đơn giản, như dấu hoa thị (*), dấu ngoặc đơn hoặc dấu ngoặc kép, để chỉ ra rằng người tìm kiếm đang tìm kiếm một kết quả chính xác. Các công cụ tìm kiếm thường cung cấp một loạt các toán tử tìm kiếm nâng cao được thiết kế để cung cấp khả năng tìm kiếm mạnh mẽ.
 
 - `site`: is an operator that when followed by a website or domain, without a space, returns files located there.
 - `filetype`: when followed by a file extension, such as DOC, PDF, XLS and INI, returns files of the specified type. Multiple file types can be searched for simultaneously by separating extensions with the vertical line symbol, as in the query filetype:DOC|PDF. The ext: operator, short for file extension, performs the same job.
@@ -155,3 +156,79 @@ The most common search operators are Boolean relationships, including AND, OR an
 - `intitle`: looks for webpages that contain a specific word in the page title.
 - `allintitle`: searches for webpages that contain multiple specified words in the title.
 
+$${\color{green}Search \space operator \space examples}$$
+
+- **site:**: Get results from certain sites or domains.
+Examples: `olympics site:nbc.com` and `olympics site:.gov`
+- **link:**: Find pages that link to a certain page.
+Example: `link:youtube.com`
+- **related**: Find sites that are similar to a web address you already know.
+Example: `related:time.com`
+- **-** : When you use a dash before a word or site, it excludes sites with that info from your results. This is useful for words with multiple meanings, like Jaguar the car brand and jaguar the animal.
+Examples: `jaguar speed -car` or `pandas -site:wikipedia.org`
+- **"** : When you put a word or phrase in quotes, the results will only include pages with the same words in the same order as the ones inside the quotes. Only use this if you’re looking for an exact word or phrase, otherwise you’ll exclude many helpful results by mistake.
+Example: `"imagine all the people"`
+- **OR** : 	Find pages that might use one of several words.
+Example: `marathon OR race`
+
+$${\color{green}Viewing Cached Content}$$
+
+The Google cache search tool will let you easily view cached pages and websites in Google's search index. You'll be able to view the content of the page as it was last cached using `cache`+`URL`
+
+**1. What is Cache?**
+- Search engine cache is a snapshot of a webpage that is stored by the search engine at the time it was crawled. Even if the webpage has been updated or removed, this cached version can still be accessed.
+
+**2.Benefits of Viewing Cached Content**
+- Access old content: You can view previous versions of a webpage, even if the content has changed or is no longer available on the official site.
+- Recover information: If a webpage has been taken down or altered, using the cache can help you retrieve the original information.
+
+**3.Using the `cache`: Operator in Search**
+- The `cache`: operator allows you to search for and view the cached version of a specific webpage.
+- How to use it: In Google’s search bar, type `cache`: followed by the URL of the page you want to view. For example: cache:www.example.com.
+
+**4.Limitations**
+- Not all search engines provide the ability to view cached content. This feature is most useful with Google.
+- Limited version: The cache only stores the version of the page at the time it was crawled, so if the page has been updated, the cache won’t reflect the new content.
+
+> **1. Bộ Nhớ Cache là Gì?**
+> - Bộ nhớ cache của công cụ tìm kiếm là một bản sao của trang web được lưu trữ bởi công cụ tìm kiếm tại thời điểm nó thu thập dữ liệu. Khi một trang web được cập nhật hoặc bị xóa, bản sao này vẫn có thể được truy cập thông qua bộ nhớ cache.
+>
+> **2.Lợi Ích của Việc Xem Nội Dung Đã Lưu Trong Bộ Nhớ Cache**
+> - Truy cập nội dung cũ: Bạn có thể xem các phiên bản trước đó của trang web, ngay cả khi nội dung đã thay đổi hoặc không còn tồn tại trên trang web chính thức.
+> - Khôi phục thông tin: Nếu một trang web bị gỡ bỏ hoặc thay đổi, việc sử dụng bộ nhớ cache có thể giúp bạn khôi phục thông tin ban đầu.
+>
+> **3. Sử Dụng Toán Tử `cache`: trong Tìm Kiếm**
+> - Toán tử `cache`: cho phép bạn tìm kiếm và xem phiên bản lưu trong bộ nhớ cache của một trang web cụ thể.
+> - Cách sử dụng: Trong ô tìm kiếm của Google, bạn gõ `cache`: theo sau là URL của trang bạn muốn xem. Ví dụ: cache:www.example.com.
+
+# GOOGLE HACKING OR DOCKING #
+
+Google Hacking, also known as Dorking, involves using search operators creatively to uncover sensitive files and information. By chaining multiple search operators together, a tester can effectively find specific types of data that may not be easily accessible through regular searches. Although this technique is commonly associated with Google, it can also be used with other search engines, provided they support similar search operators.
+
+**1.Search Operators**: These can be combined in various ways to locate sensitive information, such as configuration files, user credentials, or exposed directories.
+
+**2.Google Hacking Database (GHDB)**: This is a valuable resource that provides pre-made search queries, known as "dorks," which are designed to uncover specific types of sensitive data. Categories in GHDB include:
+- Footholds: Methods to gain initial access to a system.
+- Files containing usernames: Documents that reveal usernames.
+- Sensitive Directories: Directories that should not be publicly accessible.
+- Web Server Detection: Identifying web server software and versions.
+- Vulnerable Files: Files that may be exploited by attackers.
+- Vulnerable Servers: Servers with known vulnerabilities.
+- Error Messages: Pages displaying detailed error messages that may reveal sensitive information.
+- Files containing juicy info: Documents with valuable information for attackers.
+- Files containing passwords: Text files or logs containing password data.
+Sensitive Online Shopping Info: Information related to online transactions that should remain confidential.
+
+>**1.Toán tử tìm kiếm**: Có thể kết hợp theo nhiều cách khác nhau để xác định các thông tin nhạy cảm như tệp cấu hình, thông tin đăng nhập người dùng hoặc các thư mục bị lộ.
+>
+>**2.Google Hacking Database (GHDB)**:Đây là một nguồn tài nguyên quan trọng cung cấp các truy vấn tìm kiếm được chuẩn bị sẵn, được gọi là "dorks," được thiết kế để tìm ra các loại dữ liệu nhạy cảm cụ thể. Các danh mục trong GHDB bao gồm:
+>- Footholds: Phương pháp để có được quyền truy cập ban đầu vào hệ thống.
+>- Files containing usernames: Các tệp chứa tên người dùng.
+>- Sensitive Directories: Các thư mục không nên được công khai.
+>- Web Server Detection: Xác định phần mềm và phiên bản của máy chủ web.
+>- Vulnerable Files: Các tệp có thể bị khai thác bởi kẻ tấn công.
+>- Vulnerable Servers: Các máy chủ có lỗ hổng bảo mật đã biết.
+>- Error Messages: Các trang hiển thị thông báo lỗi chi tiết có thể tiết lộ thông tin nhạy cảm.
+>- Files containing juicy info: Các tài liệu chứa thông tin có giá trị đối với kẻ tấn công.
+>- Files containing passwords: Các tệp văn bản hoặc nhật ký chứa dữ liệu mật khẩu.
+>- Sensitive Online Shopping Info: Thông tin liên quan đến giao dịch trực tuyến cần được bảo mật.
