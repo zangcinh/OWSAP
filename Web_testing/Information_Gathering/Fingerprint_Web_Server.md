@@ -83,3 +83,89 @@ Passive banner grabbing is a technique used to collect information about network
 - [Wireshark](https://www.wireshark.org/): A popular network traffic analysis tool that helps monitor and analyze packets.
 - [tcpdump](https://www.tcpdump.org/): A powerful command-line tool for capturing network packets.
 - [NetworkMiner](https://www.netresec.com/?page=NetworkMiner): A comprehensive network forensic analysis tool that can collect and analyze information from network traffic.
+
+>Passive banner grabbing là kỹ thuật thu thập thông tin về các dịch vụ mạng đang chạy trên hệ thống mà không thực hiện bất kỳ hành động nào có thể bị phát hiện bởi hệ thống mục tiêu. Thay vì gửi các yêu cầu chủ động đến máy chủ và phân tích phản hồi (như trong kỹ thuật chủ động), phương pháp này thường dựa vào việc phân tích lưu lượng mạng hiện có để nhận diện các thông tin dịch vụ và ứng dụng.
+>
+>**Cách hoạt động**
+>
+>1.Theo dõi Lưu lượng Mạng: Thay vì gửi yêu cầu đến các dịch vụ, kỹ thuật passive banner grabbing sử dụng các công cụ phân tích lưu lượng mạng (như Wireshark) để theo dõi và phân tích lưu lượng mạng đã được truyền qua mạng.
+>
+2.Phân tích Gói Tin: Các công cụ phân tích này sẽ thu thập thông tin từ các gói tin đang truyền tải qua mạng. Những gói tin này có thể chứa các dữ liệu banner hoặc thông tin về các dịch vụ đang chạy.
+
+>3.Nhận diện Dịch vụ: Dựa trên các thông tin này, người quản trị hệ thống hoặc nhà phân tích bảo mật có thể xác định các dịch vụ và ứng dụng đang hoạt động trên máy chủ mục tiêu.
+>
+>**Rủi ro**
+>
+>1.Thông tin Nhạy cảm: Dữ liệu banner có thể chứa thông tin nhạy cảm như phiên bản phần mềm, hệ điều hành, và cấu hình dịch vụ, giúp kẻ tấn công tiềm năng khai thác các lỗ hổng đã biết.
+>
+>2.Thiếu An toàn: Nếu thông tin về các dịch vụ và phiên bản phần mềm được công khai, có thể giúp kẻ tấn công xác định các điểm yếu trong hệ thống.
+>
+>**Công cụ**
+>
+>1.Wireshark: Công cụ phân tích lưu lượng mạng phổ biến, giúp theo dõi và phân tích gói tin.
+>
+>2.tcpdump: Công cụ dòng lệnh mạnh mẽ để bắt gói tin mạng.
+>
+>3.NetworkMiner: Công cụ phân tích mạng mạnh mẽ, có khả năng thu thập và phân tích thông tin từ lưu lượng mạng.
+
+# SENDING MALFORMED REQUESTS #
+
+$${\color{green}Definition \space and \space purpose}$$
+
+- Sending Malformed Requests: This involves sending HTTP requests that do not conform to standard formats or contain errors to a web server. These requests may include invalid HTTP methods, incorrectly formatted URLs, or malformed headers.
+- Purpose: The goal is to force the server to return default error messages, which can reveal information about the server, software version, and configuration. This helps in identifying the server and its details, which attackers might use to discover vulnerabilities.
+
+>Gửi yêu cầu sai lệch (Malformed Requests): Là việc gửi các yêu cầu HTTP không tuân theo chuẩn hoặc có cấu trúc sai đến máy chủ web. Những yêu cầu này có thể chứa các phương thức không hợp lệ, URL sai định dạng, hoặc header không đúng.
+>
+>Mục đích: Nhằm ép buộc máy chủ trả về các thông báo lỗi mặc định, qua đó thu thập thông tin về máy chủ, phiên bản phần mềm, và cấu hình. Đây là một cách để xác định máy chủ và các chi tiết mà kẻ tấn công có thể sử dụng để tìm ra lỗ hổng.
+
+$${\color{green}How \space it \space works}$$
+
+- When sending malformed requests, the server responds with error messages. Standard error messages (such as 400, 403, 404, 500) can reveal:
+  - Web Server Type: Apache, Nginx, IIS, etc.
+  - Server Version: For example, Apache/2.4.41 (Ubuntu).
+  - Operating System Details: The OS running the server, such as Ubuntu or Windows Server.
+  - Security Configuration Details: Some error messages might reveal information about security configurations or directory structures.
+
+$${\color{green}Common \space Errors}$$
+
+- 400 Bad Request: Occurs when the request is improperly formatted or unrecognized by the server. This error can sometimes reveal the type of server.
+- 404 Not Found: A page not found error might reveal directory structures and server details if not customized.
+- 500 Internal Server Error: An internal server error due to improper request handling. It often contains information about the server software and environment.
+
+$${\color{green}Tools}$$
+
+- Burp Suite: Used to customize HTTP requests and analyze detailed server responses.
+- [cURL](https://curl.se/): Allows sending HTTP requests from the command line to test server responses.
+- Netcat (nc): Sends custom requests over TCP to HTTP ports.
+
+# AUTOMATED SCANNING TOOLS #
+
+$${\color{green}Definition}$$
+
+Automated scanning is a type of vulnerability scanning in which systems or applications are scanned using automated tools. This process is usually performed by vulnerability management software or vulnerability management services. 
+Automated Scanning tools have the forte of auditing, logging, threat modeling, reporting, and remediation
+
+$${\color{green}Types \space of \space Automated \space Scanning \space Tools}$$
+
+**1.Network Scanners:**
+
+- [Nmap](https://nmap.org/): A powerful tool for network discovery and security auditing. It can identify open ports, services, and versions, and detect vulnerabilities.
+- [Nessus](https://www.tenable.com/products/nessus): A comprehensive vulnerability scanner that detects known vulnerabilities and misconfigurations across a network.
+- [OpenVAS](https://www.openvas.org/): An open-source vulnerability scanner and management tool.
+
+**2.Web Application Scanners:**
+
+- [OWASP ZAP](https://www.zaproxy.org/) (Zed Attack Proxy): A popular tool for finding vulnerabilities in web applications. It includes features like automated scanners and passive scanning.
+- Burp Suite: Provides a suite of tools for web application security testing, including automated scanning, crawling, and manual testing.
+- [Acunetix](https://www.acunetix.com/): A commercial tool that scans web applications for vulnerabilities like SQL injection, XSS, and more.
+
+**3.Vulnerability Scanners:**
+
+- [Qualys](https://www.qualys.com/): A cloud-based vulnerability management tool that scans for a wide range of vulnerabilities and provides detailed reports.
+- Rapid7 Nexpose: Provides real-time vulnerability assessment and management.
+
+**4.Configuration Scanners:**
+
+- [Lynis](https://cisofy.com/lynis/): An open-source security auditing tool for Unix-based systems. It performs checks on system configuration and security settings.
+- [CIS-CAT](https://www.cisecurity.org/cybersecurity-tools/cis-cat-pro): Scans for compliance with CIS Benchmarks and best practices.
