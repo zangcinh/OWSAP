@@ -141,3 +141,109 @@ Vulnerability scanners like Nessus can also detect services running on non-stand
 - Detect Popular Applications: Spot common applications or administrative interfaces that might not be obvious.
 
 Example: Nessus, when configured to scan all ports, will identify web servers and their vulnerabilities, including SSL/TLS configurations and common application interfaces.
+
+$${\color{green}Virtual \space Hosts}$$
+
+**1.DNS Zone Transfers**
+
+Identifying virtual hosts associated with a particular IP address can be a complex task, especially when multiple DNS names (or symbolic names) map to the same IP address. Virtual hosts allow one IP address to host multiple web applications or services, each with its unique DNS name. Here’s a breakdown of how DNS zone transfers can help identify these virtual hosts, though this method has its limitations.
+
+>Việc xác định các virtual hosts liên kết với một địa chỉ IP cụ thể là một nhiệm vụ phức tạp, đặc biệt khi nhiều tên DNS (hay tên biểu tượng) ánh xạ tới cùng một địa chỉ IP. Virtual hosts cho phép một địa chỉ IP lưu trữ nhiều ứng dụng web hoặc dịch vụ, mỗi ứng dụng có tên DNS riêng biệt. Dưới đây là cách DNS zone transfers có thể giúp xác định các virtual hosts này, mặc dù phương pháp này có một số hạn chế.
+
+**a. What is DNS Zone Transfer?**
+
+- A DNS zone transfer is a mechanism used by DNS servers to replicate DNS records between primary and secondary servers. If successful, a zone transfer will provide a list of all DNS records in the domain, revealing all the associated DNS names, including potential virtual hosts.
+- However, DNS zone transfers are typically restricted for security reasons because they can expose sensitive information about the network. Most DNS servers are configured to refuse unauthorized zone transfers.
+
+>DNS zone transfer là một cơ chế được sử dụng bởi các máy chủ DNS để sao chép các bản ghi DNS giữa các máy chủ chính và phụ. Nếu thành công, một zone transfer sẽ cung cấp danh sách tất cả các bản ghi DNS trong miền, tiết lộ tất cả các tên DNS liên quan, bao gồm cả các virtual hosts tiềm ẩn.
+>
+>Tuy nhiên, DNS zone transfer thường bị hạn chế vì lý do bảo mật, do nó có thể tiết lộ thông tin nhạy cảm về mạng. Phần lớn các máy chủ DNS được cấu hình để từ chối các zone transfer không được ủy quyền.
+
+**b.How to Perform DNS Zone Transfers**
+
+- Identify the Name Servers:
+  - First, you need to identify which DNS servers are authoritative for the domain associated with your target IP address (`x.y.z.t`).
+    Example:
+    
+    ![image](https://github.com/user-attachments/assets/e5046584-aeee-49db-b89f-53a65971f6a4)
+    
+>Hai name servers này thuộc về Cloudflare, một dịch vụ bảo mật và tăng tốc website phổ biến. Khi owasp.org sử dụng Cloudflare, tất cả các yêu cầu DNS cho tên miền này sẽ được chuyển qua các name servers của Cloudflare để xử lý.
+>Cloudflare sẽ trả về các bản ghi cần thiết (như A record, CNAME, MX) cho tên miền `owasp.org`, giúp trình duyệt hoặc ứng dụng biết cách kết nối đến đúng máy chủ web của OWASP.
+
+**c.Attempt a Zone Transfer**
+- Once you have the name servers, you can attempt a zone transfer using the `host` or `dig` command.
+- The goal is to ask the DNS server to transfer the list of all DNS entries it knows about. This can reveal other hidden DNS names like `helpdesk.example.com` or `webmail.example.com` that are associated with the target.\
+  Example:
+
+  ![image](https://github.com/user-attachments/assets/877f8ccf-73e3-4b46-8931-915a1313479c)
+
+However, in most cases, the response will be a refusal, as zone transfers are commonly restricted to prevent unauthorized access.
+
+**d.Why Zone Transfers Often Fail**
+
+- Security Measures: Modern DNS servers usually reject unauthorized zone transfer requests. The message 5(REFUSED) indicates that the server refused the transfer.
+- Limited Usage: Zone transfers are primarily meant for internal DNS server synchronization, not for external use, which is why many servers have this feature restricted.
+
+**2.DNS Inverse Queries**
+
+**a.PTR Records (Pointer Records)**
+
+A PTR record is a type of DNS record used to map an IP address to a domain name, opposite to the A record, which maps a domain name to an IP address. This record is commonly used in Reverse DNS Lookup.
+
+>PTR record là một loại bản ghi trong DNS được sử dụng để ánh xạ một địa chỉ IP sang một tên miền (ngược lại với A record, ánh xạ tên miền sang IP). Bản ghi này thường được sử dụng trong Reverse DNS Lookup.
+
+**b.Process of Inverse Query:**
+
+- Instead of asking the DNS server which IP corresponds to a domain name, you use a query command to request a PTR record from a specific IP address.
+- For example, if you have an IP address like `192.168.1.100`, you can use tools such as `dig` or `host` to find the corresponding PTR record.
+
+>Thay vì hỏi DNS server xem tên miền nào tương ứng với một địa chỉ IP, bạn sử dụng lệnh truy vấn để yêu cầu một PTR record từ địa chỉ IP cụ thể.
+>Ví dụ, nếu bạn có IP 192.168.1.100, bạn có thể sử dụng công cụ như dig hoặc host để tìm PTR record tương ứng.
+
+**c.How to Perform Inverse DNS Queries:**
+
+- Using the `dig` command:
+>dig -x 192.168.1.100
+- Using the `host` command
+>host 192.168.1.100
+- If successful, the command will return the domain name corresponding to that IP address. For example:
+>100.1.168.192.in-addr.arpa domain name pointer example.com.
+
+**d.Conditions for Successful Inverse DNS Query:**
+
+- This technique works only if a PTR record has been set up on the DNS server. However, not all IP addresses have PTR records, and not all organizations configure them.
+- Even if PTR records exist, they may not accurately or fully reflect all associated domain names, especially in environments where multiple domains share the same IP address.
+
+**3.Web-based DNS Searches**
+
+Web-based DNS searches are a method similar to DNS zone transfers but are conducted through web-based services that allow for name-based searches within the DNS. These searches are useful for gathering information about domain names associated with a particular domain, especially when traditional DNS queries or zone transfers are not possible.
+
+**a. Concept:**
+
+- Web-based DNS searches involve using online tools and services that provide information about domain names linked to a specific domain
+- These services often gather data from public sources, including web crawlers and other forms of DNS data, which can include subdomains and associated DNS records.
+
+**b.[Netcraft Search DNS Service](https://searchdns.netcraft.com/?host)**
+
+- One of the popular web-based DNS search tools is the Netcraft Search DNS service.
+- How it works: Testers can enter a domain name (e.g., example.com) into the search tool. The service then retrieves and displays a list of subdomains or related DNS names associated with the domain.
+- This list may include common subdomains like www.example.com, mail.example.com, or less obvious ones such as admin.example.com, which might not be easily discovered through basic DNS queries.
+- For example:
+  
+![image](https://github.com/user-attachments/assets/4cfe6753-338f-47c5-9680-bcf399e3abe4)
+
+**c. Usage in Security Testing**
+
+- Purpose: Identifying all potential entry points, such as hidden subdomains, for security assessments or penetration tests.
+- Validation: After obtaining the list of DNS names, testers must verify which names are relevant and valid for the target they are assessing. Not all results might be directly applicable or within scope, so careful filtering and analysis are necessary.
+
+**4.Reverse-IP Services**
+
+Reverse-IP services help you find different domain names that share the same IP address. This is useful for discovering other websites or services hosted on the same server as the site you're examining.
+
+**5.Googling**
+
+- Googling can help refine and expand your web application discovery by leveraging search engines to find additional information about domains and URLs that you’ve already identified.
+- For domains like webgoat.org, webscarab.com, and webscarab.net, perform searches like:
+  - site:webgoat.org to find all pages indexed by Google under this domain.
+  - webscarab.com to see general search results related to this domain.
