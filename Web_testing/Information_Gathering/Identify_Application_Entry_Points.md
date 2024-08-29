@@ -4,7 +4,7 @@ $${\color{green}Summary}$$
 
 - Application entry points are the starting points or URLs through which users interact with a web application. Finding these entry points is crucial for security testing, as they allow you to explore and analyze different parts of the application. Here are some methods to identify these entry points
 
-$${\color{green}Test \sapce Objectives}$$
+$${\color{green}Test \space Objectives}$$
 
 - Identify Possible Entry Points + Identify Injection Points
 
