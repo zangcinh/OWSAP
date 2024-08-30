@@ -43,6 +43,7 @@ $${\color{green}Summary}$$
 $${\color{green}More  \space about \space robots.txt}$$
 
 `The robots.txt file is designed to guide search bots on which pages or parts of a website they should not crawl. Here’s why search bots will ignore the pages listed in the robots.txt file`
+
 **1. Guiding Search Bots**
    - The `robots.txt` file contains directives written in a specific format to instruct search bots on how to crawl data. These directives include:
        - `User-agent`: Specifies the particular bot to which the following directives apply
