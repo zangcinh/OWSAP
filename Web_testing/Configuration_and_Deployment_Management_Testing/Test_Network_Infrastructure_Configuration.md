@@ -9,7 +9,7 @@ $${\color{green}Test \space Objectives}$$
 - Review the configuration of applications across the network and identify vulnerabilities.
 - Ensure that the frameworks and systems used are secure and not susceptible to known vulnerabilities due to default settings or outdated software.
 
-$${\color{green}How \space to \space Test}$$	
+# HOW TO TEST #
 
 **1.Identifying Vulnerabilities:** Use automated tools for scanning, but having internal information about software versions and configurations is crucial for accurate assessment.
 
