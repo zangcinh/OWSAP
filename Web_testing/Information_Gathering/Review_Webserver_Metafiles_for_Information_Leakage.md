@@ -146,5 +146,16 @@ Here is a real world example retrieved from [Google](https://www.google.com/huma
 
 ![image](https://github.com/user-attachments/assets/4da4c3bb-87c5-494a-8ca8-58bb4d57d4ec)
 
+# OTHER .well-known INFORMATION SOURCES #
+
+There are other RFCs and Internet drafts which suggest standardized uses of files within the `.well-known/` directory.
+
+# TOOLS #
+
+- Browser (View Source or Dev Tools functionality)
+- curl
+- wget
+- Burp Suite
+- ZAP
 
 
