@@ -112,6 +112,19 @@ $${\color{green}Steps \space \space for \space Testing \space Application \space
 **3.Specific Example:**
 
 - SOAP Requests: If the application accepts SOAP requests, developers could help you understand how to formulate a valid SOAP request that the application will accept and where the web service is located (if the web service or any other function hasn't already been identified during black-box testing).
-- 
+  
 >Simple Object Access Protocol (SOAP) là một giao thức mạng để trao đổi dữ liệu có cấu trúc giữa các nút. Giao thức này sử dụng định dạng XML để truyền tải thông điệp. Giao thức này hoạt động trên các giao thức lớp ứng dụng như HTTP và SMTP để ghi chú và truyền tải. SOAP cho phép các quy trình giao tiếp trên khắp các nền tảng, ngôn ngữ và hệ điều hành, vì các giao thức như HTTP đã được cài đặt trên tất cả các nền tảng
 
+# OWASP Attack Surface Detector (ASD) #
+
+$${\color{green}Overview}$$
+
+- OWASP Attack Surface Detector (ASD) is a tool that analyzes the source code of a web application to identify endpoints, the parameters they accept, and the data types of those parameters. It can also compare the changes in the attack surface between two versions of an application.
+  
+>OWASP Attack Surface Detector (ASD) là công cụ giúp phân tích mã nguồn web để tìm các điểm đầu cuối (endpoints), thông số mà chúng chấp nhận, và kiểu dữ liệu của chúng. Công cụ này còn có thể so sánh sự thay đổi bề mặt tấn công giữa hai phiên bản của ứng dụng.
+
+$${\color{green}Key \space Features:}$$
+
+- Detects endpoints, including unlinked ones that a spider cannot find.
+- Identifies parameters and their data types.
+- Compares attack surface changes between application versions.
