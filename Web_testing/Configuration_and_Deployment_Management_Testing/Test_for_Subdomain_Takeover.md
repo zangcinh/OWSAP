@@ -1,6 +1,3 @@
-
-chưa xong
-
 # OVERALL #
 
 $${\color{green}Summary}$$
@@ -39,15 +36,35 @@ $${\color{green}Test \space Objectives}$$
 
 $${\color{green}Black-Box \space Testing}$$
 
-**1.Enumerate DNS Servers and Resource Records:**
-- Use methods such as DNS enumeration with a list of common subdomains, DNS brute force, or search engines and other OSINT (Open Source Intelligence) sources.
+**1. DNS Enumeration:**
+- Purpose: To find DNS servers and resource records (like subdomains) of the target domain (e.g., victim.com).
+- Methods: Use tools and techniques like:
+ - Using a dictionary of common subdomains to find existing ones.
+ - Brute force to discover subdomains.
+ - Gathering information from OSINT sources (publicly available information).
 
-**2. Using the `dig` Command to check for DNS Responses That Warrant Further Investigation:**
+**2. Important DNS Responses to Watch For:**
+- When using the dig command, pay attention to the following responses:
+ - NXDOMAIN: The domain or subdomain doesn’t exist.
+ - SERVFAIL: The server failed to process the request.
+ - REFUSED: The request was refused by the server.
+ - No servers could be reached: Unable to connect to the server.
 
-- NXDOMAIN: Indicates that the domain name does not exist.
-- SERVFAIL: Indicates that the DNS server encountered an error processing the request.
-- REFUSED: Indicates that the request was refused by the DNS server.
-- no servers could be reached: Indicates that no connection could be made to the DNS server.
+**3. Checking for Subdomain Takeover with A and CNAME Records:**
+- Step 1: Use dnsrecon to perform DNS enumeration:
+  >./dnsrecon.py -d victim.com
+-> This will show subdomains and their corresponding IP addresses or CNAME records.
+- Step 2: Check CNAME records to see if they point to an inactive domain:
+  >dig CNAME fictioussubdomain.victim.com
+-> If the response is NXDOMAIN, it means the subdomain is inactive and potentially vulnerable to takeover.
+- Step 3: Check the A record (IP address) using `whois` to identify the service provider:
+  > whois 192.30.252.153 | grep "OrgName"
+->For example, if it shows GitHub and visiting the subdomain returns a `404 - File not found` error, this indicates a potential vulnerability, as you could claim the subdomain through GitHub Pages.
 
-**3.Objectives:**
-- Identify forgotten or misconfigured domains that could lead to subdomain takeover vulnerabilities.
+**  4. Checking Nameserver (NS Record) Takeover:**
+- Step 1: Identify all nameservers for the domain:
+  >dig ns victim.com +short
+- Step 2: If a nameserver points to an expired or inactive domain that can be purchased, the subdomain could be taken over.
+
+$${\color{green}-Box \space Testing}$$
+In Gray-Box Testing, the tester already has access to the DNS zone file, so initial enumeration isn’t needed, but the testing steps are the same as above.
